@@ -1,0 +1,14 @@
+.photo-card {
+  background-color: tomato;
+  width: auto;
+  padding: 1rem; /* Adiciona um preenchimento interno de 1rem */
+  border-radius: 8px; /* Adiciona bordas arredondadas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra suave */
+  transition: transform 0.3s ease; /* Adiciona uma transição suave de transformação */
+}
+
+.photo-card:hover {
+  transform: translateY(
+    -5px
+  ); /* Eleva o card ligeiramente ao passar o mouse sobre ele */
+}

@@ -1,0 +1,18 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: tomato;
+    height: 3rem;
+
+  }
+  
+  .logo img {
+    width: 100px;
+  }
+  
+  .buttons button {
+    margin-left: 10px;
+  }
+  
