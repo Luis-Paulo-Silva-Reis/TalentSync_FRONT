@@ -124,60 +124,71 @@ function Homepage() {
       </header>
       <main>
         <section className="home-page">
-          <h2>Encontre seu próximo emprego</h2>
-          <h2>Como funciona ? </h2>
-          <h2>Bom, temos uma pespectiva diferente sobre o assunto</h2>
+          <h2>Descubra sua Próxima Oportunidade Profissional</h2>
+          <h2>Como Funciona?</h2>
+          <h2>Uma Nova Abordagem para Encontrar Empregos</h2>
           <p>
-            Muitas vezes temos varios nomes para as mesmas vagas, e por isso
-            decimos pronizar como procurar
+            Muitas vezes, diferentes nomes são usados para descrever as mesmas
+            vagas. É por isso que decidimos simplificar a busca e a oferta de
+            empregos.
           </p>
           <p>
-            E por isso para cadastrar algo na nossa plataforma você precisa
-            seguir algumas regras que seram postas em um select em nosso
-            formulario de cadastro
+            Para cadastrar uma vaga em nossa plataforma, siga algumas regras
+            simples que serão apresentadas em um menu suspenso em nosso
+            formulário de cadastro.
           </p>
-          <p>Vamos a uma exemplo</p>
+          <p>Vamos dar um exemplo:</p>
           <p>
-            Programador/desenvolvedor - Front/Back/fullStack -
-            Treine/estagiario/freelancer/junior/pleno/senior - presencial(nome
-            da cidade)/Hibrido(Nome da cidade)/remoto - PCD/Não PCD
+            Programador/Desenvolvedor - Front-end/Back-end/Full-stack -
+            Estagiário/Júnior/Pleno/Sênior - Presencial (cidade)/Híbrido
+            (cidade)/Remoto - PCD/Não PCD
           </p>
 
           <section className="home-page">
-            <form onSubmit={handleSubmit}>
+            <form className="home-page-form" onSubmit={handleSubmit}>
               <NestedSelect
+                label="Profissão"
                 options={categorias}
                 onChange={handleCategoriaChange}
               />
               {selectedCategoria && (
                 <>
                   <NestedSelect
+                    label="Posição"
                     options={tipos[selectedCategoria]}
                     onChange={handleTipoChange}
                   />
                   <NestedSelect
+                    label="Level"
                     options={levels.Level}
                     onChange={handleLevelChange}
                   />
 
                   <NestedSelect
+                    label="Local"
                     options={TipoLocal.tiposDeLocal}
                     onChange={handleTipoLocalChange}
                   />
                   {selectedTipoLocal === "presencial" && (
                     <NestedSelect
+                      label="Presencial"
                       options={Local.presencial}
                       onChange={handleLocalChange}
                     />
                   )}
                   {selectedTipoLocal === "hibrido" && (
                     <NestedSelect
+                      label="Hibrido"
                       options={Local.hibrido}
                       onChange={handleLocalChange}
                     />
                   )}
 
-                  <NestedSelect options={PCD.PCD} onChange={handlePcdChange} />
+                  <NestedSelect
+                    label="PCD ?"
+                    options={PCD.PCD}
+                    onChange={handlePcdChange}
+                  />
                 </>
               )}
               <button type="submit">Buscar</button>

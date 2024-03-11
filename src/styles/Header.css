@@ -1,18 +1,26 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: tomato;
-    height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: var(--cor-roxa);
+  height: auto;
+}
 
-  }
+.buttons{
+  padding: 1rem;
+}
+
+.footer-texto{
+  color: var(--cor-branca);
+}
+
+.logo img {
+  width: 100px;
+}
+
+.buttons button {
+  margin-left: 10px;
+  padding: 1rem;
   
-  .logo img {
-    width: 100px;
-  }
-  
-  .buttons button {
-    margin-left: 10px;
-  }
-  
+}

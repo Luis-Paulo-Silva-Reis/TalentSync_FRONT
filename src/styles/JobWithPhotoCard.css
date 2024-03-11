@@ -7,6 +7,10 @@
   transition: transform 0.3s ease; /* Adiciona uma transição suave de transformação */
 }
 
+.photo-card p {
+  color: var(--cor-branca);
+}
+
 .photo-card:hover {
   transform: translateY(
     -5px

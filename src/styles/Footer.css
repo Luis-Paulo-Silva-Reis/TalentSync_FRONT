@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: aquamarine;
+    background-color: var(--cor-roxa);
     height: 6rem;
 
   }

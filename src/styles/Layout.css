@@ -1,7 +1,7 @@
 
 .layout{
     width: calc(100vw - 1.12rem); /* o problema da tela e aqui*/
-    background-color: beige;
+    background-color: var(--cor-branca);
     min-height: 60vh;
     box-sizing: border-box;
     padding: 0;

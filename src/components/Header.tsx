@@ -1,11 +1,9 @@
 import React from "react";
 import "../styles/Header.css";
 
-interface HeaderProps {
-  logoUrl: string;
-}
+import logoUrl from '../assets/logo.png'
 
-const Header: React.FC<HeaderProps> = ({ logoUrl }) => {
+const Header: React.FC = () => {
   return (
     <header className="header">
       <div className="logo">

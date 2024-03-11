@@ -8,11 +8,11 @@ import { Outlet } from "react-router-dom";
 const Layout: React.FC = () => {
   return (
     <div className="layout">
-      <Header logoUrl={""} />
+      <Header />
       <main className="main">
         <Outlet />
       </main>
-      <Footer logoUrl={""} />
+      <Footer />
     </div>
   );
 };
