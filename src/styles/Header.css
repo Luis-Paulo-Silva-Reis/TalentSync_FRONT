@@ -7,11 +7,13 @@
   height: auto;
 }
 
-.buttons{
+.buttons {
+  display: flex;
   padding: 1rem;
+  gap: 1rem;
 }
 
-.footer-texto{
+.footer-texto {
   color: var(--cor-branca);
 }
 
@@ -22,5 +24,4 @@
 .buttons button {
   margin-left: 10px;
   padding: 1rem;
-  
 }

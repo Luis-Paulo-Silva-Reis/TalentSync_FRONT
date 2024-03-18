@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/SearchJob.css";
 
 export interface Option {
@@ -7,9 +7,9 @@ export interface Option {
 }
 
 interface NestedSelectProps {
-  options: Option[] | undefined;
+  options: Option[] | Promise<Option[]>; // Alteração no tipo de options para Option[] | Promise<Option[]>
   onChange: (value: string) => void;
-  label: string; // Adicionando a propriedade label
+  label: string;
 }
 
 const NestedSelect: React.FC<NestedSelectProps> = ({
@@ -18,6 +18,33 @@ const NestedSelect: React.FC<NestedSelectProps> = ({
   label,
 }) => {
   const [selectedOption, setSelectedOption] = useState<string>("");
+  const [resolvedOptions, setResolvedOptions] = useState<Option[]>([]);
+
+  useEffect(() => {
+    // Função para verificar se options é uma Promise
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const isPromise = (val: any): val is Promise<Option[]> => {
+      return val && typeof val.then === 'function';
+    };
+
+    // Função para lidar com a Promise de opções
+    const handlePromise = async (promise: Promise<Option[]>) => {
+      try {
+        const optionsData = await promise;
+        setResolvedOptions(optionsData);
+      } catch (error) {
+        console.error("Erro ao obter opções:", error);
+      }
+    };
+
+    // Verifica se options é uma Promise e a trata adequadamente
+    if (isPromise(options)) {
+      handlePromise(options);
+    } else {
+      // Se options for um array, apenas atualize resolvedOptions
+      setResolvedOptions(options);
+    }
+  }, [options]);
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
@@ -30,12 +57,11 @@ const NestedSelect: React.FC<NestedSelectProps> = ({
       <label htmlFor={label}>{label}</label>
       <select id={label} value={selectedOption} onChange={handleSelectChange}>
         <option value="">Escolha uma opção</option>
-        {options &&
-          options.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
+        {resolvedOptions.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
       </select>
     </div>
   );

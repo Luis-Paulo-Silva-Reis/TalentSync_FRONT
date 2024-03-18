@@ -1,4 +1,6 @@
-
+.main{
+    min-height: 80vh;
+}
 .layout{
     width: calc(100vw - 1.12rem); /* o problema da tela e aqui*/
     background-color: var(--cor-branca);

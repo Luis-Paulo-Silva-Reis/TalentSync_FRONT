@@ -1,10 +1,17 @@
 import "../styles/HomePage.css";
-import NestedSelect, { Option } from "../components/SearchJob"; // Importando o componente NestedSelect
+import NestedSelect, { Option } from "../components/SearchJob";
 import { useState } from "react";
-import CardList from "../components/CardList";
+import React from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Homepage() {
-  const categorias: Option[] = [
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/jobs");
+  };
+  const profissoes: Option[] = [
     { value: "Programador", label: "Programador" },
     { value: "Desenvolvedor", label: "Desenvolvedor" },
   ];
@@ -47,19 +54,52 @@ function Homepage() {
     ],
   };
 
-  const Local: { [key: string]: Option[] } = {
-    presencial: [
-      { value: "BH", label: "Belo Horizonte presencial" },
-      { value: "SP", label: "São Paulo presencial" },
-      // Adicione mais opções de cidades aqui, se necessário
+  const estados: { [key: string]: Option[] } = {
+    ESTADOS: [
+      { value: "AC", label: "Acre" },
+      { value: "AL", label: "Alagoas" },
+      { value: "AP", label: "Amapá" },
+      { value: "AM", label: "Amazonas" },
+      { value: "BA", label: "Bahia" },
+      { value: "CE", label: "Ceará" },
+      { value: "DF", label: "Distrito Federal" },
+      { value: "ES", label: "Espírito Santo" },
+      { value: "GO", label: "Goiás" },
+      { value: "MA", label: "Maranhão" },
+      { value: "MT", label: "Mato Grosso" },
+      { value: "MS", label: "Mato Grosso do Sul" },
+      { value: "MG", label: "Minas Gerais" },
+      { value: "PA", label: "Pará" },
+      { value: "PB", label: "Paraíba" },
+      { value: "PR", label: "Paraná" },
+      { value: "PE", label: "Pernambuco" },
+      { value: "PI", label: "Piauí" },
+      { value: "RJ", label: "Rio de Janeiro" },
+      { value: "RN", label: "Rio Grande do Norte" },
+      { value: "RS", label: "Rio Grande do Sul" },
+      { value: "RO", label: "Rondônia" },
+      { value: "RR", label: "Roraima" },
+      { value: "SC", label: "Santa Catarina" },
+      { value: "SP", label: "São Paulo" },
+      { value: "SE", label: "Sergipe" },
+      { value: "TO", label: "Tocantins" },
     ],
-    hibrido: [
-      { value: "BH", label: "Belo Horizonte hibrido" },
-      { value: "SP", label: "São Paulo hibrido" },
-      // Adicione mais opções de cidades aqui, se necessário
-    ],
-    remoto: [{ value: "Remoto", label: "Remoto" }],
   };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async function getCidadesFromAPI(estado: any): Promise<Option[]> {
+    try {
+      const response = await getCidades(estado); // Use a função getCidades para obter as cidades do IBGE
+      const cidadesOptions = response.map((cidade: string) => ({
+        value: cidade,
+        label: `${cidade} presencial`,
+      }));
+      return cidadesOptions;
+    } catch (error) {
+      console.error("Erro ao obter as cidades:", error);
+      return [];
+    }
+  }
 
   const PCD: { [key: string]: Option[] } = {
     PCD: [
@@ -72,8 +112,17 @@ function Homepage() {
   const [selectedTipo, setSelectedTipo] = useState<string>("");
   const [selectedLevel, setSelectedLevel] = useState<string>("");
   const [selectedTipoLocal, setSelectedTipoLocal] = useState<string>("");
+  const [selectedEstados, setSelectedEstados] = useState<string>("");
   const [selectedLocal, setSelectedLocal] = useState<string>("");
   const [selectedPCD, setSelectedPCD] = useState<string>("");
+
+  selectedEstados;
+
+  const Local: { [key: string]: Promise<Option[]> } = {
+    presencial: getCidadesFromAPI(selectedEstados), // Substitua 'MG' pelo código do estado desejado
+    hibrido: getCidadesFromAPI(selectedEstados), // Substitua 'SP' pelo código do estado desejado
+    remoto: Promise.resolve([{ value: "Remoto", label: "Remoto" }]), // Mantenha a definição original para o caso 'remoto'
+  };
 
   const handleCategoriaChange = (value: string) => {
     setSelectedCategoria(value);
@@ -95,6 +144,11 @@ function Homepage() {
   const handleTipoLocalChange = (value: string) => {
     setSelectedTipoLocal(value);
   };
+
+  const handleEstadosChange = (value: string) => {
+    setSelectedEstados(value);
+  };
+
   const handleLocalChange = (value: string) => {
     setSelectedLocal(value);
   };
@@ -105,13 +159,33 @@ function Homepage() {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log("Categoria selecionada:", selectedCategoria);
-    console.log("Tipo selecionado:", selectedTipo);
-    console.log("Level selecionado:", selectedLevel);
-    console.log("tipos de Local selecionado:", selectedTipoLocal);
-    console.log("Local selecionado:", selectedLocal);
-    console.log("PCD selecionado:", selectedPCD);
+
+    const formData = {
+      categoria: selectedCategoria,
+      tipo: selectedTipo,
+      level: selectedLevel,
+      tiposDeLocal: selectedTipoLocal,
+      estado: selectedEstados,
+      local: selectedLocal,
+      pcd: selectedPCD,
+    };
+
+    console.log("Dados do formulário:", formData);
   };
+
+  async function getCidades(estado: string): Promise<string[]> {
+    try {
+      const response = await axios.get(
+        `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${estado}/municipios`
+      );
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const cidades = response.data.map((cidade: any) => cidade.nome);
+      return cidades;
+    } catch (error) {
+      console.error("Erro ao obter as cidades:", error);
+      return [];
+    }
+  }
 
   return (
     <div className="HomePage">
@@ -148,7 +222,7 @@ function Homepage() {
             <form className="home-page-form" onSubmit={handleSubmit}>
               <NestedSelect
                 label="Profissão"
-                options={categorias}
+                options={profissoes}
                 onChange={handleCategoriaChange}
               />
               {selectedCategoria && (
@@ -169,6 +243,15 @@ function Homepage() {
                     options={TipoLocal.tiposDeLocal}
                     onChange={handleTipoLocalChange}
                   />
+
+                  {selectedTipoLocal === "presencial" ||
+                    (selectedTipoLocal === "hibrido" && (
+                      <NestedSelect
+                        label="ESTADOS"
+                        options={estados.ESTADOS}
+                        onChange={handleEstadosChange}
+                      />
+                    ))}
                   {selectedTipoLocal === "presencial" && (
                     <NestedSelect
                       label="Presencial"
@@ -191,21 +274,21 @@ function Homepage() {
                   />
                 </>
               )}
-              <button type="submit">Buscar</button>
+
+              <button type="submit" onClick={handleClick}>
+                Buscar
+              </button>
             </form>
           </section>
 
           <p>
             E assim evitamos te termos varias vagas para as mesmas possicoes com
-            nomes difentes, Pode Ser algo mais simples.
+            nomes difentes, Pode Ser algo mais simples, assim você encontra
+            atamente o que procura. as mesmas regras para buscar as vagas são
+            usadas para cadastrar as vagas.
           </p>
-        </section>
-        <section className="featured-jobs">
-          <h2>Vagas em Destaque</h2>
-          <div>
-            <CardList />
-          </div>
-          <div></div>
+
+          <p>Tudo aqui e gratis</p>
         </section>
       </main>
     </div>

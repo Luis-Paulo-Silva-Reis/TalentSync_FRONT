@@ -1,7 +1,18 @@
-.HomePage{
-    padding: 1rem;
+.HomePage {
+  padding: 1rem;
 }
 
 .home-page-form {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+@media (max-width: 1300px) {
+  .home-page-form {
     display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-direction: column;
+  }
 }

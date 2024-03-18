@@ -1,10 +1,9 @@
 import React from "react";
 import "../styles/Footer.css";
+import logoUrl from '../assets/logo.png';
 
-import logoUrl from '../assets/logo.png'
 
-
-const Footer: React.FC = () => {
+function Footer() {
   return (
     <footer className="footer">
       <div className="logo">
@@ -15,6 +14,6 @@ const Footer: React.FC = () => {
       </div>
     </footer>
   );
-};
+}
 
 export default Footer;

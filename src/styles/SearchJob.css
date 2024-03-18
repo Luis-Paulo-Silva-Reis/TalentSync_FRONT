@@ -1,5 +1,17 @@
-.SearchJobForm{
-    display: flex;
-    flex-direction: column;
-    padding: 2px;
+.SearchJobForm {
+  display: flex;
+  flex-direction: column;
+  padding: 2px;
+}
+
+.home-page-form button {
+  background-color: var(--cor-roxa);
+  color: var(--cor-branca);
+  border: 1px solid var(--cor-laranja);
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  padding: 0.5rem 2rem;
+  font-weight: bold;
+  
 }

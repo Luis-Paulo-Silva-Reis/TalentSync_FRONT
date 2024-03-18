@@ -1,4 +1,5 @@
 //app.ts
+import React from "react";
 import { useFetchJobs } from "../services/fetchJobs";
 
 function Jobs(): JSX.Element {

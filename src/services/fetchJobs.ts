@@ -5,7 +5,7 @@ import axios, { AxiosError } from "axios";
 
 async function fetchJobs(): Promise<JobData[]> {
   try {
-    const response = await axios.get<JobData[]>("http://localhost:5162/");
+    const response = await axios.get<JobData[]>("http://localhost:5162/jobs");
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
