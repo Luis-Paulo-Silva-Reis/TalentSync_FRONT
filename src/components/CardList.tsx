@@ -1,5 +1,5 @@
 import React from "react";
-import JobWithPhotoCardComponent from "./JobWithPhotoCard";
+import JobWithPhotoCardComponent from "./JobComponent";
 import "../styles/CardList.css";
 
 import { useFetchJobs } from "../services/fetchJobs";

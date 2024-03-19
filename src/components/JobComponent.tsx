@@ -1,10 +1,8 @@
 import React from "react";
 import { JobWithPhotoCardProps } from "../dtos/jobDto";
-import "../styles/JobWithPhotoCard.css";
+import "../styles/JobComponent.css";
 
-const JobWithPhotoCardComponent: React.FC<JobWithPhotoCardProps> = ({
-  job,
-}) => {
+const JobComponent: React.FC<JobWithPhotoCardProps> = ({ job }) => {
   return (
     <div className="photo-card">
       <div className="info">
@@ -20,4 +18,4 @@ const JobWithPhotoCardComponent: React.FC<JobWithPhotoCardProps> = ({
   );
 };
 
-export default JobWithPhotoCardComponent;
+export default JobComponent;

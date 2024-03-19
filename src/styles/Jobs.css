@@ -1,0 +1,25 @@
+.Jobs {
+  display: flex;
+}
+
+.Jobs + .home-page-form {
+  display: flex;
+  flex-direction: column;
+  background-color: red;
+}
+
+.Jobs > .home-page-form {
+  display: flex;
+  flex-direction: column;
+  background-color: red;
+}
+
+.JobsTeste {
+  display: flex;
+  flex-direction: column;
+  max-width: 20%;
+}
+
+.JobsTesteCards {
+  background-color: indigo;
+}

@@ -7,7 +7,7 @@ export interface Option {
 }
 
 interface NestedSelectProps {
-  options: Option[] | Promise<Option[]>; // Alteração no tipo de options para Option[] | Promise<Option[]>
+  options: Option[] | Promise<Option[]>;
   onChange: (value: string) => void;
   label: string;
 }
@@ -21,13 +21,11 @@ const NestedSelect: React.FC<NestedSelectProps> = ({
   const [resolvedOptions, setResolvedOptions] = useState<Option[]>([]);
 
   useEffect(() => {
-    // Função para verificar se options é uma Promise
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const isPromise = (val: any): val is Promise<Option[]> => {
-      return val && typeof val.then === 'function';
+      return val && typeof val.then === "function";
     };
 
-    // Função para lidar com a Promise de opções
     const handlePromise = async (promise: Promise<Option[]>) => {
       try {
         const optionsData = await promise;

@@ -11,7 +11,7 @@
     grid-template-columns: repeat(
       3,
       1fr
-    ); /* Altera para duas colunas em telas menores que 768px */
+    ); 
     padding: 1rem;
   }
 }
@@ -21,7 +21,7 @@
     grid-template-columns: repeat(
       2,
       1fr
-    ); /* Altera para duas colunas em telas menores que 768px */
+    ); 
     padding: 1rem;
   }
 }

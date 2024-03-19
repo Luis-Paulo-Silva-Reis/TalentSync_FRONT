@@ -1,18 +1,16 @@
 .footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: var(--cor-roxa);
-    height: 6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: var(--cor-roxa);
+  height: 6rem;
+}
 
-  }
-  
-  .logo img {
-    width: 100px; 
-  }
-  
-  .buttons button {
-    margin-left: 0px;
-  }
-  
+.logo img {
+  width: 100px;
+}
+
+.buttons button {
+  margin-left: 0px;
+}
