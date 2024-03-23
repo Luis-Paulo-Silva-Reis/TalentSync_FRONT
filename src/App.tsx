@@ -1,11 +1,11 @@
 //App.tsx
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from './components/Layout';
-import HomePage from './pages/HomePage';
-import NoMatch from './pages/NoMatch';
-import Jobs from './pages/Jobs';
-
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
+import HomePage from "./pages/HomePage";
+import NoMatch from "./pages/NoMatch";
+import Jobs from "./pages/Jobs";
+import CompanySpace from "./pages/CompanySpace";
 
 const App: React.FC = () => {
   return (
@@ -15,6 +15,7 @@ const App: React.FC = () => {
           <Route index element={<HomePage />} />
           <Route path="*" element={<NoMatch />} />
           <Route path="/jobs" element={<Jobs />} />
+          <Route path="/CompanySpace" element={<CompanySpace />} />
         </Route>
       </Routes>
     </Router>
