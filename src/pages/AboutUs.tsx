@@ -4,4 +4,4 @@ function AboutUs() {
   return <>AboutUs page</>;
 }
 
-export default AboutUs();
+export default AboutUs;

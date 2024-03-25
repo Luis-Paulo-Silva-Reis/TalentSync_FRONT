@@ -1,5 +1,6 @@
 .main {
   min-height: 80vh;
+  padding: 1rem;
 }
 .layout {
   width: calc(100vw - 1.12rem); /* o problema da tela e aqui*/
@@ -9,4 +10,5 @@
   padding: 0;
   margin: 0;
   overflow: hidden;
+  overflow-x: hidden;
 }

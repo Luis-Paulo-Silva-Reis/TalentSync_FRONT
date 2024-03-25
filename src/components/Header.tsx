@@ -9,6 +9,13 @@ const Header: React.FC = () => {
   const handleClick = () => {
     navigate("/");
   };
+  const handleClickUser = () => {
+    navigate("/User");
+  };
+  const handleClickCompany = () => {
+    navigate("/Company");
+  };
+
   return (
     <header className="header">
       <div className="logo">
@@ -17,8 +24,8 @@ const Header: React.FC = () => {
         </button>
       </div>
       <div className="buttons">
-        <button> Candidato </button>
-        <button> Empresa </button>
+        <button onClick={handleClickUser}> Candidato </button>
+        <button onClick={handleClickCompany}> Empresa </button>
       </div>
     </header>
   );
