@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import {
   CompanyRegisterService,
   verifyTokenService,
-} from "../services/CompanyRegister"; // Ensure verifyTokenService is exported and implemented
+} from "../services/CompanyRegister";
 
-function CompanyRegister() {
+function CompanyLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -28,20 +28,17 @@ function CompanyRegister() {
       if (registerResponse && registerResponse.token) {
         const verifyResponse = await verifyTokenService(registerResponse.token);
         if (verifyResponse && verifyResponse.valid) {
-          localStorage.setItem("token", registerResponse.token); // Store the token
-          navigate("/CompanySpace"); // Navigate to dashboard or appropriate page
+          localStorage.setItem("token", registerResponse.token);
+          navigate("/CompanySpace");
         } else {
           alert("Token is invalid, please login again.");
-          // Handle invalid token case here
         }
       } else {
         alert("Registration failed, please try again.");
-        // Handle registration failure
       }
     } catch (error) {
       console.error("Error during registration:", error);
       alert("An error occurred during registration.");
-      // Handle errors gracefully in the UI
     }
   };
 
@@ -68,4 +65,4 @@ function CompanyRegister() {
   );
 }
 
-export default CompanyRegister;
+export default CompanyLogin;

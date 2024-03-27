@@ -1,30 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import CompanyRegister from "./CompanyLogin";
 
 function CompanyForm() {
-  // Estado para controlar qual formulário mostrar
   const [mostrarFormularioA, setMostrarFormularioA] = useState(true);
+  const [formType, setFormType] = useState("Login");
 
-  // Função para alternar entre os formulários
   function toggleFormulario() {
     setMostrarFormularioA(!mostrarFormularioA);
+
+    setFormType(mostrarFormularioA ? "Login" : "Cadastro" );
   }
 
   return (
     <div>
       <button onClick={toggleFormulario}>
-        Trocar Formulário
+        {formType}
       </button>
-      {mostrarFormularioA ? (
-        <FormularioA />
-      ) : (
-        <FormularioB />
-      )}
+      {mostrarFormularioA ? <CompanyRegister /> : <FormularioB />}
     </div>
   );
-}
-
-function FormularioA() {
-  return <div>Conteúdo do Formulário A Company</div>;
 }
 
 function FormularioB() {

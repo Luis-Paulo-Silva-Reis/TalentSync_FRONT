@@ -1,7 +1,7 @@
 import FormSearchJob from "../components/FormSearchJob";
 import "../styles/HomePage.css";
 import React from "react";
-import CompanyRegister from "./CompanyRegister";
+
 
 function Homepage() {
   return (
@@ -48,8 +48,6 @@ function Homepage() {
 
           <p>Tudo aqui e gratis</p>
         </section>
-
-        <CompanyRegister></CompanyRegister>
       </main>
     </div>
   );
